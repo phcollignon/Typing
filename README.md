@@ -1,3 +1,25 @@
+# MTGAP workaround for french (or other foreign language)
+
+This fork is a workaround of https://github.com/michaeldickens/Typing to support french accents.  
+
+Clone the repo, run `make` then `optimizer` and `run` command.
+
+A ratio of 50% french 50% english is setup by default.  Other language ratio can be made, from letter and digraphs frequency files in `freq_types` folder, with the `make typing data` command (to be run inside the `optimizer` program)
+
+Please note that this is a workaround, accent must be mapped to other Ascii character in the corpus because the Unicode characters are not supported in the original code.
+
+The current mapping for french is :
+- é -> )
+- è -> (
+- à -> {
+- ê -> }
+- ç -> [
+- ù -> ]
+
+
+# Original README
+
+
 ABOUT
 -----
 

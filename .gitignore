@@ -4,6 +4,8 @@
 build
 optimizer
 unit
+freq_fr
+freq_types/*.sh
 
 # Backup files
 *\#*
