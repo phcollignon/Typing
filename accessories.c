@@ -3,7 +3,7 @@
  *  Typing
  *
  *  Created by Michael Dickens on 8/11/09.  
- *  
+ *  Workaround by Philippe Collignon for french layout support
  */
 
 #include "accessories.h"
@@ -492,28 +492,20 @@ int makeTypingData()
     printf("makeTypingData is broken. It is temporarily disabled until it gets fixed.\n");
     
 	static const char *diFilenames[] = {
-		"freq_types/digraphs_00allProse.txt", 
-		"freq_types/digraphs_01allCasual.txt", 
+		"freq_types/digraphs_00fr.txt", 
+		"freq_types/digraphs_01en.txt", 
 		"freq_types/digraphs_02allC.txt", 
-		"freq_types/digraphs_02allJava.txt", 
-		"freq_types/digraphs_02allPerl.txt", 
-		"freq_types/digraphs_02allRuby.txt", 
-		"freq_types/digraphs_03allFormal.txt", 
-		"freq_types/digraphs_04allNews.txt", 
+		"freq_types/digraphs_02allJava.txt"
 	};
 	
 	static const char *monFilenames[] = {
-		"freq_types/chars_00allProse.txt", 
-		"freq_types/chars_01allCasual.txt", 
+		"freq_types/chars_00fr.txt", 
+		"freq_types/chars_01en.txt", 
 		"freq_types/chars_02allC.txt", 
 		"freq_types/chars_02allJava.txt", 
-		"freq_types/chars_02allPerl.txt", 
-		"freq_types/chars_02allRuby.txt", 
-		"freq_types/chars_03allFormal.txt", 
-		"freq_types/chars_04allNews.txt", 
 	};
 	
-	int multipliers[8];
+	int multipliers[4];
 	
 	printf("There are several types of text. You must specify an integer multiplier for each one. The multiplier ");
 	printf("will determine how heavily to weight that file. For example if you do a lot of Java programming ");
@@ -529,31 +521,24 @@ int makeTypingData()
 	fgets(input, 100, stdin);
 	
 	if (input[0] == 'y' || input[0] == 'Y') {
-		multipliers[0] = 18;
-		multipliers[1] = 25;
-		multipliers[2] =  5;
-		multipliers[3] =  6;
-		multipliers[4] =  2;
-		multipliers[5] =  2;
-		multipliers[6] = 15;
-		multipliers[7] = 20;
+		multipliers[0] = 40; 
+		multipliers[1] = 40;
+		multipliers[2] =  10;
+		multipliers[3] =  10;
+
 	} else {
-		multipliers[0] = getInteger("prose: ");
-		multipliers[1] = getInteger("casual: ");
+		multipliers[0] = getInteger("fr: ");
+		multipliers[1] = getInteger("en: ");
 		multipliers[2] = getInteger("C: ");
 		multipliers[3] = getInteger("Java: ");
-		multipliers[4] = getInteger("Perl: ");
-		multipliers[5] = getInteger("Ruby: ");
-		multipliers[6] = getInteger("formal: ");
-		multipliers[7] = getInteger("news: ");
 	}
 	
 	printf("\nPlease specify the maximum number of strings to put in the file. The optimizer will run faster ");
 	printf("with fewer strings and more accurately with more strings. (The recommended number is 1000-2000.)\n");
 	int max = getInteger("max: ");
 	
-	compileTypingData(DIGRAPH_FILE, diFilenames, multipliers, 8, 2, max);
-	compileTypingData(MONOGRAPHFILE, monFilenames, multipliers, 8, 1, max);
+	compileTypingData(DIGRAPH_FILE, diFilenames, multipliers, 4, 2, max);
+	compileTypingData(MONOGRAPHFILE, monFilenames, multipliers, 4, 1, max);
 	
 	printf("\nDone writing typing data. See allChars.txt and allDigraphs.txt for the result.\n\n");
 	

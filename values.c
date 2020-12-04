@@ -89,7 +89,7 @@ void initCosts()
 	keepZXCV = FALSE;
 	keepQWERTY = FALSE;
 	keepNumbers = 1;
-	keepBrackets = TRUE;
+	keepBrackets = FALSE;
 	keepShiftPairs = FALSE;
 	keepTab = TRUE;
 	keepConsonantsRight = FALSE;

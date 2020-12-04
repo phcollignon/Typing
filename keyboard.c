@@ -3,7 +3,7 @@
  *  Typing
  *
  *  Created by Michael Dickens on 8/7/09.
- *
+ *  Workaround by Philippe Collignon for french layout support
  */
 
 #include "keyboard.h"
@@ -465,6 +465,12 @@ int charToPrintable(char *buffer, char c, int changeSpace)
 {
 	if (c == '\n') sprintf(buffer, "\\n");
 	else if (c == '\t') sprintf(buffer, "\\t");
+	else if (c == ')') sprintf(buffer, "é");
+	else if (c == '(') sprintf(buffer, "è");
+	else if (c == '{') sprintf(buffer, "à");
+	else if (c == '}') sprintf(buffer, "ê");
+	else if (c == '[') sprintf(buffer, "ç");
+	else if (c == ']') sprintf(buffer, "ù");
 	else if (c == ASCII_SHIFT) sprintf(buffer, "\\s");
 	else if (c == '\b') sprintf(buffer, "\\b");
 	else if (changeSpace && c == ' ') sprintf(buffer, "SP");
