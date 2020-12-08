@@ -27,8 +27,8 @@ go run corpus.go text
 ```
 
 That create two frequency files : `chars.txt` and `digraphs.txt` with 
-- accents replaced by Ascii characters (as in the mapping above) 
-- dead key based characters are splitted  (ie: ï => ¨i )
+- accent letters replaced by Ascii characters (as in the mapping above) 
+- dead key based  letters splitted in two key pressed (ie: ï => ¨i )
 
 Those frequency files can then be copied in the `freq_types` folder.
 
