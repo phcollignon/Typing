@@ -1,4 +1,4 @@
-# MTGAP workaround for french (or other foreign language)
+# MTGAP workaround for french 
 
 This fork is a workaround of https://github.com/michaeldickens/Typing to support french accents.  
 
@@ -6,7 +6,7 @@ Clone the repo, run `make` then `optimizer` and `run` command.
 
 A ratio of 50% french 50% english is setup by default.  Other language ratio can be made, from letter and digraphs frequency files in `freq_types` folder, with the `make typing data` command (to be run inside the `optimizer` program)
 
-Please note that this is a workaround, accent must be mapped to other Ascii character in the corpus because the Unicode characters are not supported in the original code.
+Please note that this is a workaround, accent must be mapped to other Ascii character because the Unicode characters are not supported in the original code.  You can use the custom parser below to build the frequency files.
 
 The current mapping for french is :
 - é -> )
@@ -16,6 +16,26 @@ The current mapping for french is :
 - ç -> [
 - ù -> ]
 
+# French corpus parser
+
+In the corpus folder, you'll find a Go program that can be used to build frequency letter and digraphs files from text content.  
+
+Drop some text content in the `corpus\text` folder and run corpus.go 
+
+```
+go run corpus.go text
+```
+
+That create two frequency files : `chars.txt` and `digraphs.txt` with 
+- accents replaced by Ascii characters (as in the mapping above) 
+- dead key based characters are splitted  (ie: ï => ¨i )
+
+Those frequency files can then be copied in the `freq_types` folder.
+
+```
+cp chars.txt ../freq_types/chars_00fr.txt
+cp digraphs.txt ../freq_types/digraphs_00fr.txt
+```
 
 # Original README
 
