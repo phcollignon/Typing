@@ -471,6 +471,7 @@ int charToPrintable(char *buffer, char c, int changeSpace)
 	else if (c == '}') sprintf(buffer, "ê");
 	else if (c == '[') sprintf(buffer, "ç");
 	else if (c == ']') sprintf(buffer, "ù");
+	else if (c == '|') sprintf(buffer, "¨");
 	else if (c == ASCII_SHIFT) sprintf(buffer, "\\s");
 	else if (c == '\b') sprintf(buffer, "\\b");
 	else if (changeSpace && c == ' ') sprintf(buffer, "SP");

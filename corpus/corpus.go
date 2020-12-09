@@ -29,7 +29,7 @@ func parseCorpus(fileReader io.Reader, charsMap map[string]int, digraphsMap map[
 
 				s := mapToAscii(strings.ToLower(string(c)))
 
-				if strings.Contains("äëïüöâûîô", s) {
+				if strings.Contains("äëïüöâûîôœ", s) {
 					dk := getDeadKey(s)
 					addDeadKeyChar(dk, string(prev_c), charsMap, digraphsMap)
 					prev_c_dk = dk.livechar
@@ -58,7 +58,7 @@ func parseCorpus(fileReader io.Reader, charsMap map[string]int, digraphsMap map[
 }
 
 func mapToAscii(s string) string {
-	if strings.Contains("()[]{}", s) {
+	if strings.Contains("()[]{}|", s) {
 		return " "
 	}
 	switch s {
@@ -74,6 +74,10 @@ func mapToAscii(s string) string {
 		return "["
 	case "ù":
 		return "]"
+	case "«":
+		return "\""
+	case "»":
+		return "\""
 	default:
 		return s
 	}
@@ -102,15 +106,15 @@ type deadKey struct {
 func getDeadKey(c string) deadKey {
 	switch c {
 	case "ä":
-		return deadKey{"¨", "a"}
+		return deadKey{"|", "a"}
 	case "ï":
-		return deadKey{"¨", "i"}
+		return deadKey{"|", "i"}
 	case "ë":
-		return deadKey{"¨", "e"}
+		return deadKey{"|", "e"}
 	case "ü":
-		return deadKey{"¨", "u"}
+		return deadKey{"|", "u"}
 	case "ö":
-		return deadKey{"¨", "o"}
+		return deadKey{"|", "o"}
 	case "â":
 		return deadKey{"^", "a"}
 	case "î":
@@ -122,6 +126,8 @@ func getDeadKey(c string) deadKey {
 		return deadKey{"^", "u"}
 	case "ô":
 		return deadKey{"^", "o"}
+	case "œ":
+		return deadKey{"o", "e"}
 	}
 	return deadKey{}
 }
